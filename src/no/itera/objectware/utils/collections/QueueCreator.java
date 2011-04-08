@@ -3,8 +3,7 @@ package no.itera.objectware.utils.collections;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.*;
 
 /**
  * User: Reidar Sollid
@@ -16,6 +15,22 @@ public class QueueCreator {
         return new LinkedList<E>();
     }
 
+    public static <E extends Delayed> DelayQueue<E> newDelayQueue(){
+        return new DelayQueue<E>();
+    }
+
+    public static <E>SynchronousQueue<E> newSynchronousQueue(){
+        return new SynchronousQueue<E>();
+    }
+
+    public static <E>PriorityQueue<E> newPriorityQueue(){
+        return new PriorityQueue<E>();
+    }
+
+    public static <E>PriorityBlockingQueue<E> newPriorityBlockingQueue(){
+        return new PriorityBlockingQueue<E>();
+    }
+
     public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue() {
         return new LinkedBlockingQueue<E>();
     }
@@ -24,7 +39,11 @@ public class QueueCreator {
         return new LinkedBlockingDeque<E>();
     }
 
-    public static <E>PriorityQueue<E> newPriorityQueue(){
-        return new PriorityQueue<E>();
+    public static <E>ArrayBlockingQueue<E> newArrayBlockingQueue(int capacity, boolean fair){
+        return new ArrayBlockingQueue<E>(capacity,fair);
+    }
+
+    public static <E>ConcurrentLinkedQueue<E> newConcurrentLinkedQueue(){
+        return new ConcurrentLinkedQueue<E>();
     }
 }
