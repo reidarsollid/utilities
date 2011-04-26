@@ -33,7 +33,7 @@ public class RomanNumbersTest {
 
         expected = "XI";
         actual = RomanNumbers.toRoman(11);
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -41,13 +41,35 @@ public class RomanNumbersTest {
         String expected = "XXIV";
         String actual = RomanNumbers.toRoman(24);
         assertEquals(expected, actual);
+
+        actual = RomanNumbers.toRoman(3999);
+        expected = "MMMCMXCIX";
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void testEnumGetHighest(){
+    public void testEnumGetHighest() {
         RomanNumbers.Romans expected = RomanNumbers.Romans.X;
         RomanNumbers.Romans actualRomans = RomanNumbers.Romans.getHighest(24);
-        assertEquals(expected,actualRomans);
+        assertEquals(expected, actualRomans);
 
+    }
+
+    @Test
+    public void testFromRoman() {
+        int actual = RomanNumbers.fromRoman("X");
+        int expected = 10;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testFromRomanMixed() {
+        int expected = 24;
+        int actual = RomanNumbers.fromRoman("XXIV");
+        assertEquals(expected, actual);
+
+        expected = 3999;
+        actual = RomanNumbers.fromRoman("MMMCMXCIX");
+        assertEquals(expected,actual);
     }
 }
