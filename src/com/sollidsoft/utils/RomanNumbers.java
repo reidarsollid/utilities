@@ -81,5 +81,68 @@ public class RomanNumbers {
         return result;
     }
 
+    public static int fromRoman(String roman) {
+        try {
+            return Romans.valueOf(roman).getArabic();
+        } catch (IllegalArgumentException e) {
+            int sum = 0;
+            char lastChar = 'A';
+            for (char c : roman.toCharArray()) {
+                switch (c) {
+                    case 'M':
+                        if (lastChar == 'C') {
+                            sum += 800;
+                            break;
+                        }
+                        sum += 1000;
+                        break;
+                    case 'D':
+                        if (lastChar == 'C') {
+                            sum += 300;
+                        }
+                        sum += 500;
+                        break;
+                    case 'C':
+                        if (lastChar == 'X') {
+                            sum += 80;
+                            break;
+                        }
+                        sum += 100;
+                        break;
+                    case 'L':
+                        if (lastChar == 'X') {
+                            sum += 30;
+                        }
+                        sum += 50;
+                        break;
+                    case 'X':
+                        if (lastChar == 'I') {
+                            sum += 8;
+                            break;
+                        }
+                        sum += 10;
+                        break;
+                    case 'V':
+                        if (lastChar == 'I') {
+                            sum += 3;
+                            break;
+                        }
+                        sum += 5;
+                        break;
+                    case 'I':
+                        sum += 1;
+                        break;
+                }
+                lastChar = c;
+            }
+            return sum;
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+    }
+
 
 }
