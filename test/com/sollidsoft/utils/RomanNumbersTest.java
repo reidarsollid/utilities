@@ -52,7 +52,6 @@ public class RomanNumbersTest {
         RomanNumbers.Romans expected = RomanNumbers.Romans.X;
         RomanNumbers.Romans actualRomans = RomanNumbers.Romans.getHighest(24);
         assertEquals(expected, actualRomans);
-
     }
 
     @Test

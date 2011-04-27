@@ -9,22 +9,6 @@ import java.util.*;
  */
 public class RomanNumbers {
 
-    /*
-     M    1000            X   10
-      D     500            V    5
-      C     100            I    1
-      L      50
-
-       M    1000            X   10
-      CM    900            IX   9
-      D     500            V    5
-      CD    400            IV   4
-      C     100            I    1
-      XC     90
-      L      50
-      XL     40
-     */
-
     enum Romans {
         I(1), IV(4), V(5), IX(9), X(10), XL(40), L(50), XC(90), C(100), CD(400), D(500), CM(900), M(1000);
         private final int arabic;
@@ -59,9 +43,17 @@ public class RomanNumbers {
                     return lastROman;
                 }
                 lastROman = integerRomansMap.get(integer);
-
             }
             return lastROman;
+        }
+
+        public static boolean contains(String roman) {
+            for (Romans r : Romans.values()) {
+                if (r.name().equals(roman)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -81,11 +73,12 @@ public class RomanNumbers {
         return result;
     }
 
-    public static int fromRoman(String roman) {
-        try {
-            return Romans.valueOf(roman).getArabic();
-        } catch (IllegalArgumentException e) {
-            int sum = 0;
+    public static int fromRoman(final String roman) {
+        int sum = 0;
+        if (Romans.contains(roman)) {
+            sum = Romans.valueOf(roman).getArabic();
+        } else {
+
             char lastChar = 'A';
             for (char c : roman.toCharArray()) {
                 switch (c) {
@@ -135,14 +128,7 @@ public class RomanNumbers {
                 }
                 lastChar = c;
             }
-            return sum;
         }
-
+        return sum;
     }
-
-    public static void main(String[] args) {
-
-    }
-
-
 }
