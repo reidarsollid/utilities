@@ -11,6 +11,10 @@ import org.scalatest.matchers.ShouldMatchers
  */
 
 class RomanSpec extends FlatSpec with ShouldMatchers {
+  "A roman converter" should "calculate Josh Bloch calculation to 1225" in {
+    (RomanConversion fromRoman ("DLXVI")) + (RomanConversion fromRoman("DCLIX")) should equal (1225)
+  }
+
   "A roman converter" should "convert a text string to an integer" in {
     RomanConversion fromRoman ("X") should equal(10)
     RomanConversion fromRoman ("XXIV") should equal(24)
@@ -21,5 +25,6 @@ class RomanSpec extends FlatSpec with ShouldMatchers {
     RomanConversion toRoman (10) should equal("X")
     RomanConversion toRoman (24) should equal("XXIV")
     RomanConversion toRoman (3999) should equal("MMMCMXCIX")
+
   }
 }
